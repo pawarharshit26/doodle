@@ -92,11 +92,9 @@ with open('E:\programing\study\python_pro\django-study\database_password.txt') a
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':  'Nature',
-        'USER': 'postgres',
-        'PASSWORD': 'harshit7481',
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'doodle'
+       
     }
 }
 
