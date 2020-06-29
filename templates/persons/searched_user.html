@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="/media/persons/css/searched_usercss.css">
+{% endblock css %}
+
+{% block title %}
+{{user.username}}
+{% endblock title %}
+
+
+{% block body %}
+<div id="main" class="container d-flex flex-column">
+    <div class="info d-flex justify-content-around align-items-center">
+        <div class="pro_pic">
+            <img class="pic" src="/media/{{profile.profile_picture}}" alt="">
+        </div>
+        <div class="detail d-flex  flex-column justify-content-around align-items-center">
+            <div>
+                <h2>{{user.username}}</h2>
+                {% if flag == "True" %}
+                <form action="/persons/unfollow/{{user.username}}">
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <input class="follow" type="submit" value="unfollow">
+                </form>
+                {% else %}
+                <form action="/persons/follow/{{user.username}}">
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <input id="unfollow" class="follow" type="submit" value="follow">
+                </form>
+                {% endif %}
+            </div>
+            <p>
+                <span>{{photos|length}} posts &emsp;</span>
+                <span>{{my_followers|length}} followers &emsp; </span>
+                <span>{{i_follow|length}} following</span>
+            </p>
+            <h5>Harshit Pawar</h5>
+        </div>
+    </div>
+
+
+    <div class="grid-container">
+        {% for photo in photos %}
+        <img class="grid_item" src="/media/{{photo.photo}}" alt="">
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock body %}

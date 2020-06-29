@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %} Nature Window
+{% endblock title %}
+
+{% block body %}
+<div class="container d-flex flex-column align-items-center" id="home-main">
+
+{% if res|length > 0 %}
+    {% for photo,flag,like_count in res %}
+
+    <div class="home-post">
+        <div class="home-username d-flex align-items-center">
+          <a href="/persons/{{photo.upload_by.username}}">  <h5>{{photo.upload_by}}</h5></a>
+        </div>
+        <div class="home-image d-flex justify-content-center">
+            <img class="home-post-img" src="/media/{{photo.photo}}" alt="">
+        </div>
+        <div class="home-likes-comments">
+            <div class="home-post-icon d-flex">
+                {% if flag == "False" %}
+                <form action="/images/like/{{photo.sno}}" method="post" style="padding-left: 20px;padding-top: 10px;">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <input class="home-like-btn" type="submit" value="like">
+                    <div><p>{{like_count}} likes</p> </div>
+                </form>
+                {% else %}
+                <form action="/images/dislike/{{photo.sno}}" method="post" style="padding-left: 20px;padding-top: 10px;">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <input id="home-dislike" class="home-like-btn"  type="submit" value="like">
+                    <div><p>{{like_count}} likes</p> </div>
+                </form>
+                {% endif %}
+
+                <a href="/images/image_detail/{{photo.sno}}" style="padding-top: 10px;"><i class="far fa-comment-alt"></i></a>
+                <p style="padding-top: 10px;padding-left:10px">{{photo.upload_time}}</p>
+            </div>
+            <div class="home-comment">
+                <form action="/images/comment/{{photo.sno}}" method="post" class="d-flex justify-content-around align-items-center">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <input class="home-c-text" name="text" type="text" placeholder="comment here">
+                    <input class="home-c-btn" type="submit" value="post">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+{% else %}
+    <h4>your followings not upload any photos.</h4>
+{% endif %}
+</div>
+{% endblock body %}
+
+
+{% block nav-icon-home %}
+style="color:red";
+{% endblock nav-icon-home %}

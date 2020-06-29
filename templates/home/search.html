@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title  %} Search Results
+{% endblock title  %}
+
+{% block css %}
+<link rel="stylesheet" href="/media/home/css/searchcss.css">
+{% endblock css %}
+
+{% block body %}
+
+<div class="container search-results">
+    <!-- <h2>Search Results</h2> -->
+    {% if user_profile|length < 1 %}
+    <h5>No Search Results</h5>
+
+    Your Search qurey: <b>{{query}}</b>- did not match any documents <br>
+    Suggestions:
+    <ul>
+        <li>Make sure that all words are spelled correctly.</li>
+        <li>Try different Keywords.</li>
+        <li>Try more general Keywords.</li>
+        <li>Try fewer Keywords.</li>
+    </ul>
+    {% endif %}
+
+{% for user,profile in user_profile %}
+    <a href="/persons/{{user.username}}" class="search-profile d-flex justify-content-around">
+        <div class="search-proimg">
+            <img src="/media/{{profile.profile_picture}}" alt="">
+        </div>
+        <div class="search-prodata">
+            <h4>{{user.username}}</h4>
+            <p>{{user.first_name}}  {{user.last_name}}</p>
+        </div>
+    </a>
+
+    {% endfor %}
+</div>
+{% endblock body %}

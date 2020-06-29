@@ -1,0 +1,102 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+
+  <link rel="stylesheet" href="{% static '/css/basecss.css' %}">
+  {% include 'include.html' %}
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <title>{% block title %}
+    {% endblock title %}</title>
+
+  <script src="https://kit.fontawesome.com/e8f58f23ba.js" crossorigin="anonymous"></script>
+  {% block js_head %}
+  {% endblock js_head %}
+</head>
+
+<body>
+
+  <div class="body" style="/*border:1px solid black;*/background-color: silver;">
+    <!-- Nav bar-->
+    <div class="navi" style="/*border:1px solid black ;*/background-color: white;">
+      <div>
+        <h1>Nature Window</h1>
+      </div>
+
+      <div class="form-search">
+        {% if user.is_authenticated %}
+
+        <form action="/search" class="search" id="search" Required>
+          <input name="search_query" type="text" placeholder='search'>
+          <input type="submit">
+          {% endif %}
+        </form>
+      </div>
+
+      <div>
+        {% if user.is_authenticated %}
+        <a {% block nav-icon-home %} {% endblock nav-icon-home %} href="/"><i class="fas fa-home"></i></a>
+        <a {% block nav-icon-explore %} {% endblock nav-icon-explore %} href="/images"><i class="fab fa-safari"></i></a>
+        {% comment %} <a {% block nav-icon-chat %} {% endblock nav-icon-chat %} href="/images"><i class="far fa-paper-plane"></i></a> {% endcomment %}
+
+        <a href="/signout"><i class="fas fa-sign-out-alt"></i></a>
+        <h3 style="font-size: 16px;"><a {% block nav-icon-user %} {% endblock nav-icon-user %} href="/persons/pro"> hello
+            {{request.user}} </a></h3>
+        <!-- <img id="profile-image" src="/media/{{propic}}" alt=""> -->
+        {% else %}
+        <a href="/signin_page"><i class="fas fa-sign-in-alt"></i></a>
+        <a href="/signup_page"><i class="fas fa-user-plus"></i></i></a>
+        {% endif %}
+
+      </div>
+    </div>
+
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show mb-0" role="alert">
+      <strong>Message:</strong> {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+    {% block body %}
+    {% endblock body %}
+    {% else %}
+    <div class="body-div container-fluid d-flex justify-content-center align-items-center">
+      <a class="links" href="/signin_page">Sign in</a>
+      <a class="links" href="/signup_page">Sign up</a>
+    </div>
+    {% endif %}
+  </div>
+  <footer>
+    <h1>footer</h1>
+  </footer>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+  {% block js_body %}
+  {% endblock js_body %}
+</body>
+
+</html>

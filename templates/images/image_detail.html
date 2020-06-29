@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}
+image detail
+{% endblock title %}
+
+
+{% block body %}
+<div class="imgd-main d-flex justify-content-center align-items-center">
+    <div class="imgd-detail d-flex ">
+        <div class="imgd-image d-flex align-items-center">
+            <img src="/media/{{photo.photo}}" alt="">
+        </div>
+        <div class="imgd-comment d-flex flex-column">
+            <div class="imgd-username">
+               <a href="/persons/{{photo.upload_by.username}}"> <h4>{{photo.upload_by}}</h4> </a>
+            </div>
+            <div class="imgd-all-comments">
+                {% for comment in all_comments %}
+                <div class="imgd-media text-muted pt-3">
+                    <p class="imgd-media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <strong class="d-block text-gray-dark">{{comment.user.username}}</strong>
+                        {{comment.text}}
+                        <br>
+                        {{comment.timestamp}}
+                    </p>
+                </div>
+
+                {% endfor %}
+            </div>
+            <div class="imgd-icon align-self-end">
+                <div class="imgd-post-icon d-flex">
+                    {% if flag == "False" %}
+                    <form action="/images/like/{{photo.sno}}" method="post"
+                        style="padding-left: 20px;padding-top: 10px;">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <input class="imgd-like-btn" type="submit" value="like">
+                        <div>
+                            <p>{{like_count}} likes</p>
+                        </div>
+                    </form>
+                    {% else %}
+                    <form action="/images/dislike/{{photo.sno}}" method="post"
+                        style="padding-left: 20px;padding-top: 10px;">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <input id="imgd-dislike" class="imgd-like-btn" type="submit" value="like">
+                        <div>
+                            <p>{{like_count}} likes</p>
+                        </div>
+                    </form>
+                    {% endif %}
+                    <p style="padding-top: 10px;padding-left:10px">{{photo.upload_time}}</p>
+                </div>
+                <form action="/images/comment/{{photo.sno}}" method="post"
+                    class="d-flex justify-content-around align-items-center">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <input class="c-text" name="text" type="text" placeholder="comment here">
+                    <input class="c-btn" type="submit" value="post">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock body %}

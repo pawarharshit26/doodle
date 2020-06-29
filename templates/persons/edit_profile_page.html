@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title  %}
+Edit profile
+{% endblock title  %}
+
+{% block body %}
+<div id="edp-main" class="container-fluid d-flex justify-content-around align-items-center">
+    <div id="edp-edit_profile" class="edp-pages">
+        <form id="edp-edit_pro_fo" action="edit_profile"  method="post"
+            class="d-flex flex-column justify-content-around align-items-center">
+            {% csrf_token %}
+            <input class="edp-edit_fields" name="username" type="text" placeholder="Username" value="{{username}}">
+            {% if first_name %}
+            <input class="edp-edit_fields" name="first_name" type="text" placeholder="First Name" value="{{first_name}}">
+            {% else %}
+            <input class="edp-edit_fields" name="first_name" type="text" placeholder="First Name">
+            {% endif %}
+            {% if last_name %}
+            <input class="edp-edit_fields" name="last_name" type="text" placeholder="Last Name" value="{{last_name}}">
+            {% else %}
+            <input class="edp-edit_fields" name="last_name" type="text" placeholder="Last Name">
+            {% endif %}
+
+            {% if dob %}
+            <input class="edp-edit_fields" name="dob" type="date" id="birthday" name="birthday" value="{{dob}}">
+            {% else %}
+            <input class="edp-edit_fields" name="dob" type="date" id="birthday" name="birthday">
+            {% endif %}
+            <input class="edp-edit_fields" id="edp-edit_sub"  type="submit">
+        </form>
+    </div>
+    <div id="edp-change_password" class="edp-pages">
+        <form action="change_password" method="post" id="ch_pass_fo" class="d-flex flex-column justify-content-around align-items-center">
+            {% csrf_token %}
+            <input class="edp-edit_fields" name="old_pass" type="password" placeholder="Old Password">
+            <input class="edp-edit_fields" name="new_pass" type="password" placeholder="New Password">
+            <input class="edp-edit_fields" name="con_new_pass" type="password" placeholder="Confirm Password">
+            <input class="edp-edit_fields" id="edp-ch_sub" type="submit">
+        </form>
+    </div>
+</div>
+
+
+{% endblock body %}

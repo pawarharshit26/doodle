@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+All images
+{% endblock title %}
+
+{% block body %}
+<div class="container imgh-main">
+    
+    <div class="imgh-grid-container">
+        {% for i in all_img %}
+        <a method href="/images/image_detail/{{i.sno}}"><img src="/media/{{i.photo}}" alt=""></a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %}
+
+{% block nav-icon-explore %}style="color:red";
+{% endblock nav-icon-explore %}

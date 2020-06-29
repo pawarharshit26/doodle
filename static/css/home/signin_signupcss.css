@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.ssp-main{
+    width: 100vw;
+    height: 100vh;
+    background-image:  url(/static/images/nature2.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.ssp-main .ssp-page{
+    height: 65%;
+    width: 30%;
+    border-radius: 30px;
+    color: white;
+    border: 1px solid rgb(219, 169, 76);
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+}
+
+.ssp-main .ssp-page .ssp-switch{
+    /* background-color:red; */
+    max-width: 100%;
+    height: 15%;
+    display: block;
+}
+
+.ssp-main .ssp-page .ssp-signin .ssp-fields{
+    /* background-color: green; */
+    height: 75%;
+}
+
+.ssp-btn-box{
+    width: 50%;
+    height: 75%;
+    border-radius: 20px;
+    background-color: rgb(206, 192, 180);
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+}
+
+
+.ssp-head{
+    padding: 10px 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.ssp-head:hover{
+    background-color:yellow;
+    color: red;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.ssp-in-field{
+    height: 40px;
+    width: 70%;
+    padding-left: 5px;
+    outline: none;
+    font-weight: 700;
+    border: none;
+    font-family: cursive;
+    font-size: 23px;
+    color: rgb(212, 197, 186);
+    background: transparent;
+    border-bottom: 1px solid wheat;
+}
+
+#ssp-sub-l{
+    width: auto;
+    border-radius: 15px;
+    padding:  5px 5px 5px 5px;
+    border: 1px solid rgb(111, 122, 62); ;
+    /* background: linear-gradient(to right,red ,orange); */
+}
+
+#ssp-sub-l:hover{
+    cursor: pointer;
+    background-color: rgb(45, 70, 9)
+    /* background: linear-gradient(to righ,orange,red); */
+}

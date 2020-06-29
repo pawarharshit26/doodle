@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title  %}profile{% endblock title  %}
+
+
+{% block body %}
+<div id="pro-main" class="container d-flex flex-column align-items-center" style="">
+    <div class="pro-info d-flex justify-content-around align-items-center">
+        <div class="pro-pro_pic">
+            <img class="pro-pic" src="/media/{{profile.profile_picture}}" alt="">
+        </div>
+        <div class="pro-detail d-flex  flex-column justify-content-around align-items-center">
+            <div>
+                <h2>{{user.username}}</h2> <a href="edit_profile_page">Edit profile</a>
+            </div>
+            <p>
+                <span>{{photos|length}} posts &emsp;</span>
+                <span  data-toggle="modal" data-target="#my-followers-modal">{{my_followers|length}} followers &emsp; </span>
+                <span >{{i_follow|length}} following</span>
+            </p>
+            <h5>{{user.first_name}} {{user.last_name}}</h5>
+
+            <form style="border: 1px solid gray; padding: 5px;" action="/persons/profile_image" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <h6>Change Profile Picture:</h6>
+                <input id="pro-image" type="file" name="image" placeholder="Picture">
+                <input type="submit" value="upload">
+            </form>
+        </div>
+
+    </div>
+
+    <div class="pro-upload-image d-flex ">
+        <form action="/images/upload_image" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <h5>Upload images:</h5>
+            <input id="pro-image" type="file" name="image" placeholder="Picture">
+            <input type="submit" value="upload">
+        </form>
+    </div>
+    <div class="pro-grid-container">
+        {% for photo in photos %}
+        <img class="pro-grid_item" src="/media/{{photo.photo}}" alt="">
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="my-followers-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">followers</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}
+
+{% block nav-icon-user %}
+style="color:red";
+{% endblock nav-icon-user %}

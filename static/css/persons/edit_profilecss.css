@@ -1,0 +1,68 @@
+#edp-main{
+    height: 84vh;
+    background-image:  url(/media/images/photos/nature3.jpg);
+    background-position: center;
+    background-size: cover; 
+}
+
+.edp-pages{
+    width: 30%;
+    height: 60vh;
+    min-width: 300px;
+    min-height: 300px;
+    /* border: 1px solid black; */
+    border-radius: 40px;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+}
+
+#edp-edit_pro_fo{
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid black; */
+    display: block;
+}
+
+#edp-ch_pass_fo{
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid black; */
+    display: block;
+}
+
+.edp-edit_fields{
+    width: 70%;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    padding-left: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+    background: transparent;
+}
+
+
+#edp-edit_sub{
+    width: 40%;
+    min-width: 100px;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding-right: 10px;
+}
+
+#edp-edit_sub:hover{
+    background-color: rgb(125, 155, 16);
+}
+
+#edp-ch_sub{
+    width: 40%;
+    border: 1px solid white;
+    border-radius: 15px;
+    min-width: 100px;
+    padding-right: 10px;
+}
+
+#edp-ch_sub:hover{
+    background-color: rgb(125, 155, 16);
+}

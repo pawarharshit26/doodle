@@ -1,0 +1,69 @@
+.imgd-main{
+    height: 84vh;
+    width: 100%;
+}
+
+.imgd-detail{
+    height: 90%;
+    width: 69%;
+    background:transparent;
+    /* border: 1px solid gray; */
+}
+
+.imgd-image{
+    height: 100%;
+    width: 65%;
+    
+    /* background-color: yellow; */
+}
+
+img{
+    max-height:  100%;
+    max-width: 100%;
+    display: block;
+    border: 1px solid gray;
+}
+
+.imgd-comment{
+    border: 1px solid gray;
+    height: 100%;
+    width: 35%;
+    background-color: white;
+}
+
+.imgd-username{
+    height: 55px;
+    width: 100%;
+    padding-left: 10px;
+    padding-top: 10px;
+    border: 1px solid black;
+}
+
+.imgd-all-comments{
+    height: 65%;
+    border: 1px solid black;
+    overflow-y: scroll;
+}
+
+.imgd-all-comments .imgd-media{
+    padding-left: 10px;
+}
+
+.imgd-icon{
+    height: 150px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.imgd-like-btn{
+    border-radius: 6px;
+    outline: none;
+}
+
+.imgd-like-btn:focus{
+    outline: none;
+}
+
+#imgd-dislike{
+    background-color: purple;
+}
